@@ -4,10 +4,10 @@
     "incremental": true,
     "target": "esnext",
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "sourceMap": true,
-    "outDir": "./.dist",
-    "rootDir": "src",
+    "outDir": "./dist",
+    //"rootDir": "src",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -16,6 +16,6 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true
   },
-  "include": ["src/**/*", "**/*.ts"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules"]
 }

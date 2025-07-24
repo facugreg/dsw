@@ -5,7 +5,7 @@ import { MySqlDriver } from '@mikro-orm/mysql';
 
 export const orm = await MikroORM.init({
   driver: MySqlDriver,
-  entities: ['.dist/**/*.entity.js'],
+  entities: ['dist/**/*.entity.js'],
   entitiesTs: ['src/**/*.entity.ts'],
   dbName: 'hc4gmo',
   metadataProvider: TsMorphMetadataProvider,
