@@ -44,7 +44,15 @@ async function add(req: Request, res: Response) {
 }
 
 async function update(req: Request, res: Response) {
-  res.status(500).json({ message: 'not implemented' });
+  try {
+    const id = Number.parseInt(req.params.id);
+    const characterClass = em.getReference(CharacterClass, id);
+    em.assign(characterClass, req.body);
+    await em.flush();
+    res.status(200).json({ message: 'character class updated' });
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
+  }
 }
 
 async function remove(req: Request, res: Response) {
