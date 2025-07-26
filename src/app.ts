@@ -6,6 +6,7 @@ import { characterRouter } from './character/character.routes.js';
 import { characterClassRouter } from './character/characterClass.routes.js';
 import { orm, syncSchema } from './shared/db/orm.js';
 import { RequestContext } from '@mikro-orm/core';
+import { itemRouter } from './character/item.router.js';
 
 const app = express();
 app.use(express.json());
@@ -17,9 +18,9 @@ app.use((req, res, next) => {
   RequestContext.create(orm.em, next);
 });
 //antes de las rutas y middlewares de negocio
-
-app.use('/api/characters', characterRouter);
 app.use('/api/characters/classes', characterClassRouter);
+app.use('/api/characters', characterRouter);
+app.use('/api/items', itemRouter);
 
 app.use((req, res) => {
   res.status(404).send({

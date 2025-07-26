@@ -11,7 +11,7 @@ import {
 export const characterRouter: Router = Router();
 
 characterRouter.get('/', findAll);
-//characterRouter.get('/:id', findOne);
+characterRouter.get('/:id', findOne);
 characterRouter.post('/', sanitizeCharacterInput, add);
 characterRouter.put('/:id', sanitizeCharacterInput, update);
 characterRouter.patch('/:id', sanitizeCharacterInput, update);

@@ -1,52 +1,83 @@
+### GET all characters
+http://localhost:3000/api/characters
 
 
-###obtener todos los personajes
-GET http://localhost:3000/api/characters
-
-###obtener uno
-GET http://localhost:3000/api/characters/1
-
-
-### agregar un nuevo character
-POST  http://localhost:3000/api/characters
-Content-Type: application/json 
-
-
-{
-  "name":"Atila",
-  "characterClass":"warrior",
-  "items":["bow","arrow"],
-  "attack":10,
-  "mana":10,
-  "hp":10,
-  "level":1
-}
-
-###modificar un character (recurso completo e idempotente)
-PUT http://localhost:3000/api/characters/2
+### POST a character
+# @name createVader
+POST http://localhost:3000/api/characters
 Content-Type: application/json
 
 {
-  "name":"Anakin Skywalker",
-  "characterClass":"Fallen Jedi",
-  "items":["bow","arrow"],
-  "attack":10,
-  "mana":10,
-  "hp":10,
-  "level":1 
+    "name": "Darth  Vader",
+    "characterClass": 28,
+    "items": [1,2,3],
+    "attack": 25,
+    "mana": 100,
+    "hp": 100,
+    "level": 10
 }
 
-###modificar un character (recurso parcial )
-PATCH http://localhost:3000/api/characters/2
+### ID
+@id = {{createVader.response.body.data.id}}
+
+### GET one character
+http://localhost:3000/api/characters/{{id}}
+
+### PUT a character
+PUT http://localhost:3000/api/characters/{{id}}
 Content-Type: application/json
 
 {
-  "name":"Anakin Skywalker",
-  "characterClass":"Fallen Jedi",
-  "items":["Lightsaber","X-Wing"],
-  
-  "level":11
+  "name": "Anakin Skywalker",
+  "characterClass": 28,
+  "level": 10,
+  "hp": 100,
+  "mana": 50,
+  "attack": 30,
+  "items": [1]
 }
 
-###borrar un character
-DELETE http://localhost:3000/api/characters/2
+### POST a character
+POST http://localhost:3000/api/characters
+Content-Type: application/json
+
+{
+    "name": "Luke Skywalker",
+    "characterClass":30,
+    "items": [1],
+    "attack": 20,
+    "mana": 70,
+    "hp": 130,
+    "level": 5
+}
+
+### POST a character
+# @name createCharacterToDelete
+POST http://localhost:3000/api/characters
+Content-Type: application/json
+
+{
+    "name": "Ashoka Tano",
+    "characterClass": 30,
+    "items": [1],
+    "attack": 20,
+    "mana": 70,
+    "hp": 130,
+    "level": 5
+}
+### DELETE a character
+@idToDelete = {{createCharacterToDelete.response.body.data.id}}
+DELETE http://localhost:3000/api/characters/{{idToDelete}}
+
+### PATCH a character
+PATCH http://localhost:3000/api/characters/{{idToDelete}}
+Content-Type: application/json
+
+{
+  "level": 6,
+  "characterClass":4,
+  "items": [1]
+}
+
+### DELETE a character
+DELETE http://localhost:3000/api/characters/{{idToDelete}}

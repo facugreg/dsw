@@ -56,7 +56,18 @@ async function update(req: Request, res: Response) {
 }
 
 async function remove(req: Request, res: Response) {
-  res.status(500).json({ message: 'not implemented' });
+  try {
+    const id = Number.parseInt(req.params.id);
+    const characterClass = em.getReference(CharacterClass, id);
+    await em.removeAndFlush(characterClass);
+    res.status(200).json({
+      message: 'character class deleted',
+    });
+  } catch (error: any) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
 }
 
 export { findAll, findOne, update, remove, add };
